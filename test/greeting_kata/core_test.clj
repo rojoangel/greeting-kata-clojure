@@ -3,12 +3,10 @@
             [clojure.string :as str]
             [greeting-kata.core :refer :all]))
 
-(defn calculate-name [name]
-  (cond
-    (sequential? name) (if (> (count name) 2)
-                         (str/join ", and " [(str/join ", " (butlast name)) (last name)])
-                         (str/join " and " name))
-    :else name))
+(defn join-names [names]
+  (if (> (count names) 2)
+    (str/join ", and " [(str/join ", " (butlast names)) (last names)])
+    (str/join " and " names)))
 
 (defn uppercase? [word]
   (= word (str/upper-case word)))
@@ -28,8 +26,8 @@
     (salute "my friend")
     (let [names-list (if (sequential? names) names [names])
         [lower upper] (split names-list)
-        salutations (if (empty? lower) [] [(salute (calculate-name lower))])
-        shouts (if (empty? upper) [] [(shout (calculate-name upper))])]
+        salutations (if (empty? lower) [] [(salute (join-names lower))])
+        shouts (if (empty? upper) [] [(shout (join-names upper))])]
     (str/join " AND " (concat salutations shouts)))))
 
 (deftest test-greet
