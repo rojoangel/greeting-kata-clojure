@@ -3,9 +3,10 @@
             [greeting-kata.core :refer :all]))
 
 (defn greet [name]
-  "Hello, Paco.")
+  (str "Hello, " name "."))
 
 
 (deftest test-greet
   (testing "Greets name"
-    (is (= "Hello, Paco." (greet "Paco")))))
+    (is (= "Hello, Paco." (greet "Paco")))
+    (is (= "Hello, Josefina." (greet "Josefina")))))
