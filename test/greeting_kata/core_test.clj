@@ -4,11 +4,10 @@
             [greeting-kata.core :refer :all]))
 
 (defn greet [name]
-  (let [name (if (nil? name)
-               "my friend"
-               (if (sequential? name)
-                 (str/join " and " name)
-                 name))]
+  (let [name (cond
+               (nil? name) "my friend"
+               (sequential? name) (str/join " and " name)
+               :else name)]
     (if (= name (str/upper-case name))
       (str "HELLO " name "!")
       (str "Hello, " name "."))))
