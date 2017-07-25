@@ -3,8 +3,7 @@
             [greeting-kata.core :refer :all]))
 
 (defn greet [name]
-  (if (nil? name)
-    "Hello, my friend."
+  (let [name (if (nil? name) "my friend" name)]
     (str "Hello, " name ".")))
 
 
