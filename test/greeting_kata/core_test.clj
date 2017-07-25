@@ -3,11 +3,14 @@
             [clojure.string :as str]
             [greeting-kata.core :refer :all]))
 
+(defn calculate-name [name]
+  (cond
+    (nil? name) "my friend"
+    (sequential? name) (str/join " and " name)
+    :else name))
+
 (defn greet [name]
-  (let [name (cond
-               (nil? name) "my friend"
-               (sequential? name) (str/join " and " name)
-               :else name)]
+  (let [name (calculate-name name)]
     (if (= name (str/upper-case name))
       (str "HELLO " name "!")
       (str "Hello, " name "."))))
