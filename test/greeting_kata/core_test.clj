@@ -6,7 +6,9 @@
 (defn calculate-name [name]
   (cond
     (nil? name) "my friend"
-    (sequential? name) (str/join " and " name)
+    (sequential? name) (if (> (count name) 2)
+                         (str/join ", and " [(str/join ", " (butlast name)) (last name)])
+                         (str/join " and " name))
     :else name))
 
 (defn greet [name]
@@ -24,4 +26,6 @@
   (testing "Handles shouts"
     (is (= "HELLO JERRY!" (greet "JERRY"))))
   (testing "Handles two names"
-    (is (= "Hello, Jill and Joe." (greet ["Jill" "Joe"])))))
+    (is (= "Hello, Jill and Joe." (greet ["Jill" "Joe"]))))
+  (testing "Handles arbitrarily number of names"
+    (is (= "Hello, Amy, Brian, and Charlotte." (greet ["Amy", "Brian", "Charlotte"])))))
