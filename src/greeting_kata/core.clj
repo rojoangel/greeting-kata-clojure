@@ -15,16 +15,18 @@
     [lowers uppers]))
 
 (defn salute [names]
-  (str "Hello, " names "."))
+  (when (not (empty? names))
+    (str "Hello, " names ".")))
 
 (defn shout [names]
-  (str "HELLO " names "!"))
+  (when (not (empty? names))
+    (str "HELLO " names "!")))
 
 (defn greet [names]
   (if (nil? names)
     (salute "my friend")
     (let [names-list (if (sequential? names) names [names])
           [lower upper] (split names-list)
-          salutations (if (empty? lower) [] [(salute (join-names lower))])
-          shouts (if (empty? upper) [] [(shout (join-names upper))])]
-      (str/join " AND " (concat salutations shouts)))))
+          salutations (salute (join-names lower))
+          shouts (shout (join-names upper))]
+      (str/join " AND "  (remove str/blank? [salutations shouts])))))
