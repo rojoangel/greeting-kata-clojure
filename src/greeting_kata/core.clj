@@ -22,11 +22,12 @@
   (when (not (empty? names))
     (str "HELLO " names "!")))
 
-(defn greet [names]
-  (if (nil? names)
-    (salute "my friend")
-    (let [names-list (if (sequential? names) names [names])
-          [lower upper] (split names-list)
-          salutations (salute (join-names lower))
-          shouts (shout (join-names upper))]
-      (str/join " AND "  (remove str/blank? [salutations shouts])))))
+(defn greet
+  ([]
+   (salute "my friend"))
+  ([names]
+   (let [names-list (if (sequential? names) names [names])
+         [lower upper] (split names-list)
+         salutations (salute (join-names lower))
+         shouts (shout (join-names upper))]
+     (str/join " AND " (remove str/blank? [salutations shouts])))))

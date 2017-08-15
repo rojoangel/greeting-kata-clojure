@@ -7,7 +7,7 @@
     (is (= "Hello, Paco." (greet "Paco")))
     (is (= "Hello, Josefina." (greet "Josefina"))))
   (testing "Handles nulls"
-    (is (= "Hello, my friend." (greet nil))))
+    (is (= "Hello, my friend." (greet))))
   (testing "Handles shouts"
     (is (= "HELLO JERRY!" (greet "JERRY"))))
   (testing "Handles two names"
