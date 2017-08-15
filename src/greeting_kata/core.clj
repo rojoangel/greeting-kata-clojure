@@ -25,9 +25,12 @@
 (defn greet
   ([]
    (salute "my friend"))
-  ([names]
-   (let [names-list (if (sequential? names) names [names])
-         [lower upper] (split names-list)
+  ([name]
+    (if (uppercase? name)
+      (shout name)
+      (salute name)))
+  ([name & names]
+   (let [[lower upper] (split (conj names name))
          salutations (salute (join-names lower))
          shouts (shout (join-names upper))]
      (str/join " AND " (remove str/blank? [salutations shouts])))))

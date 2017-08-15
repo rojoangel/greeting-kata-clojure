@@ -11,11 +11,11 @@
   (testing "Handles shouts"
     (is (= "HELLO JERRY!" (greet "JERRY"))))
   (testing "Handles two names"
-    (is (= "Hello, Jill and Joe." (greet ["Jill" "Joe"]))))
+    (is (= "Hello, Jill and Joe." (greet "Jill" "Joe"))))
   (testing "Handles arbitrarily number of names"
-    (is (= "Hello, Amy, Brian, and Charlotte." (greet ["Amy", "Brian", "Charlotte"]))))
+    (is (= "Hello, Amy, Brian, and Charlotte." (greet "Amy", "Brian", "Charlotte"))))
   (testing "Handles two greetings"
-    (is (= "Hello, Amy and Charlotte. AND HELLO BRIAN!" (greet ["Amy", "BRIAN", "Charlotte"])))))
+    (is (= "Hello, Amy and Charlotte. AND HELLO BRIAN!" (greet "Amy", "BRIAN", "Charlotte")))))
 
 (deftest test-split
   (testing "Splits"
