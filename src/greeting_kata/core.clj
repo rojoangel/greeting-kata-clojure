@@ -10,8 +10,9 @@
   (= word (str/upper-case word)))
 
 (defn split [names]
-  [(filter (complement uppercase?) names)
-   (filter uppercase? names)])
+  (let [{lowers false
+         uppers true} (group-by uppercase? names)]
+    [lowers uppers]))
 
 (defn salute [names]
   (str "Hello, " names "."))
