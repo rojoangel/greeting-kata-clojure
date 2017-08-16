@@ -8,7 +8,7 @@
    (str name " and " other-name))
   ([name other-name & more-names]
    (let [names (conj more-names other-name name)]
-     (str/join ", and " [(str/join ", " (butlast names)) (last names)]))))
+     (str (str/join ", " (butlast names)) ", and " (last names)))))
 
 (defn join-greets [salutations shouts]
   (str/join " AND " (remove str/blank? (vector salutations shouts))))
