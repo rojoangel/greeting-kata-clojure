@@ -46,6 +46,6 @@
    (if (uppercase? name)
      (shout name)
      (salute name)))
-  ([name & names]
-   (let [[saluted shouted] (split-salutes-and-shouts (conj names name))]
+  ([name & more-names]
+   (let [[saluted shouted] (split-salutes-and-shouts (conj more-names name))]
      (join-greets (apply salute saluted) (apply shout shouted)))))
