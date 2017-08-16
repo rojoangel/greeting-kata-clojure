@@ -19,7 +19,7 @@
 
 (defn salute
   ([]
-    (salute "my friend"))
+   (salute "my friend"))
   ([name]
    (str "Hello, " name "."))
   ([name & other-names]
@@ -28,7 +28,7 @@
 
 (defn shout
   ([]
-    nil)
+   nil)
   ([name]
    (str "HELLO " name "!"))
   ([name & other-names]
@@ -39,9 +39,9 @@
   ([]
    (salute))
   ([name]
-    (if (uppercase? name)
-      (shout name)
-      (salute name)))
+   (if (uppercase? name)
+     (shout name)
+     (salute name)))
   ([name & names]
    (let [[saluted shouted] (split-salutes-and-shouts (conj names name))]
      (join-greets (apply salute saluted) (apply shout shouted)))))
