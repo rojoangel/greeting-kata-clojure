@@ -1,10 +1,14 @@
 (ns greeting-kata.core
   (:require [clojure.string :as str]))
 
-(defn join-names [names]
-  (if (> (count names) 2)
-    (str/join ", and " [(str/join ", " (butlast names)) (last names)])
-    (str/join " and " names)))
+(defn join-names
+  ([name]
+   name)
+  ([name other-name]
+   (str name " and " other-name))
+  ([name other-name & more-names]
+   (let [names (conj more-names other-name name)]
+     (str/join ", and " [(str/join ", " (butlast names)) (last names)]))))
 
 (defn join-greets [salutations shouts]
   (str/join " AND " (remove str/blank? (vector salutations shouts))))
@@ -24,7 +28,7 @@
    (str "Hello, " name "."))
   ([name & other-names]
    (let [names (conj other-names name)]
-     (salute (join-names names)))))
+     (salute (apply join-names names)))))
 
 (defn shout
   ([]
@@ -33,7 +37,7 @@
    (str "HELLO " name "!"))
   ([name & other-names]
    (let [names (conj other-names name)]
-     (shout (join-names names)))))
+     (shout (apply join-names names)))))
 
 (defn greet
   ([]
