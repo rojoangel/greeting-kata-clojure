@@ -23,9 +23,14 @@
    (let [names (conj other-names name)]
      (salute (join-names names)))))
 
-(defn shout [names]
-  (when (not (empty? names))
-    (str "HELLO " names "!")))
+(defn shout
+  ([]
+    nil)
+  ([name]
+   (str "HELLO " name "!"))
+  ([name & other-names]
+   (let [names (conj other-names name)]
+     (shout (join-names names)))))
 
 (defn greet
   ([]
@@ -37,5 +42,5 @@
   ([name & names]
    (let [[lower upper] (split (conj names name))
          salutations (apply salute lower)
-         shouts (shout (join-names upper))]
+         shouts (apply shout upper)]
      (str/join " AND " (remove str/blank? [salutations shouts])))))
