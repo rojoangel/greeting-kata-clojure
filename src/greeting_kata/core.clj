@@ -43,7 +43,5 @@
       (shout name)
       (salute name)))
   ([name & names]
-   (let [[lower upper] (split (conj names name))
-         salutations (apply salute lower)
-         shouts (apply shout upper)]
-     (join-greets salutations shouts))))
+   (let [[lower upper] (split (conj names name))]
+     (join-greets (apply salute lower) (apply shout upper)))))
