@@ -15,6 +15,8 @@
     [lowers uppers]))
 
 (defn salute
+  ([]
+    (salute "my friend"))
   ([name]
    (str "Hello, " name "."))
   ([name & other-names]
@@ -27,7 +29,7 @@
 
 (defn greet
   ([]
-   (salute "my friend"))
+   (salute))
   ([name]
     (if (uppercase? name)
       (shout name)
