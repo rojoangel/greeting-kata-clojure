@@ -14,9 +14,12 @@
          uppers true} (group-by uppercase? names)]
     [lowers uppers]))
 
-(defn salute [names]
-  (when (not (empty? names))
-    (str "Hello, " names ".")))
+(defn salute
+  ([name]
+   (str "Hello, " name "."))
+  ([name & other-names]
+   (let [names (conj other-names name)]
+     (salute (join-names names)))))
 
 (defn shout [names]
   (when (not (empty? names))
@@ -31,6 +34,6 @@
       (salute name)))
   ([name & names]
    (let [[lower upper] (split (conj names name))
-         salutations (salute (join-names lower))
+         salutations (apply salute lower)
          shouts (shout (join-names upper))]
      (str/join " AND " (remove str/blank? [salutations shouts])))))
