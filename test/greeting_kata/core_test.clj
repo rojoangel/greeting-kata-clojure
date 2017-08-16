@@ -19,4 +19,4 @@
 
 (deftest test-split
   (testing "Splits"
-    (is (= [["Paco" "Jimmy"] ["PEPE"]] (split ["Paco" "PEPE" "Jimmy"])))))
+    (is (= [["Paco" "Jimmy"] ["PEPE"]] (split-salutes-and-shouts ["Paco" "PEPE" "Jimmy"])))))

@@ -12,10 +12,10 @@
 (defn uppercase? [word]
   (= word (str/upper-case word)))
 
-(defn split [names]
-  (let [{lowers false
-         uppers true} (group-by uppercase? names)]
-    (vector lowers uppers)))
+(defn split-salutes-and-shouts [names]
+  (let [{saluted false
+         shouted true} (group-by uppercase? names)]
+    (vector saluted shouted)))
 
 (defn salute
   ([]
@@ -43,5 +43,5 @@
       (shout name)
       (salute name)))
   ([name & names]
-   (let [[lower upper] (split (conj names name))]
-     (join-greets (apply salute lower) (apply shout upper)))))
+   (let [[saluted shouted] (split-salutes-and-shouts (conj names name))]
+     (join-greets (apply salute saluted) (apply shout shouted)))))
